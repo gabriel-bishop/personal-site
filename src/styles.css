@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+
+body {
+  /*background-color: rgb(168,61,56);*/
+  background-color: black;
+
+  /*background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");*/
+}
