@@ -1,16 +1,28 @@
 #bishop {
-  position: absolute; /* or absolute */
-  top: 50%;
-  left: 50%;
-  max-height: 400px;
-  transform: translate(-50%, -50%);
-  padding-bottom: 90px;
+  /*position: absolute; !* or absolute *!*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*max-height: 400px;*/
+  /*transform: translate(-50%, -50%);*/
+  /*padding-bottom: 90px;*/
+  max-height: 200px;
+
 
   -webkit-animation: fadein 6s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 6s; /* Firefox < 16 */
   -ms-animation: fadein 6s; /* Internet Explorer */
   -o-animation: fadein 6s; /* Opera < 12.1 */
   animation: fadein 6s;
+}
+
+#row-holder {
+  margin-top: 40px;
+}
+
+.container {
+  display: flex;
+  /*position: absolute; !* or absolute *!*/
+  /*top: 50%;*/
 }
 
 
@@ -46,13 +58,78 @@
 
 
 
-div.slide-left {
+
+
+div {
+  border: 1px solid red;
+}
+
+
+
+
+
+
+/*div.slide-right p {*/
+/*  width: 50px;*/
+/*  height: 40px;*/
+/*  position: relative;*/
+/*  left: 500px;*/
+
+/*}*/
+
+
+
+
+
+
+
+/*div.slide-left p {*/
+/*  width: 50px;*/
+/*  height: 40px;*/
+/*  position: relative;*/
+/*  right: 500px;*/
+
+
+
+/*}*/
+
+
+
+.slide-right {
   width:100%;
   overflow:hidden;
 }
-div.slide-left p {
-  animation: slide-left 5s;
+
+.slide-right p {
+  animation: slide-right 10s;
 }
+
+
+
+.slide-left {
+  width:100%;
+  overflow:hidden;
+}
+
+.slide-left p {
+
+  animation: slide-left 10s;
+
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+
 
 @keyframes slide-left {
   from {
@@ -69,26 +146,6 @@ div.slide-left p {
 
 
 
-div.slide-right {
-  width:100%;
-  overflow:hidden;
-}
-
-div.slide-right p {
-  animation: slide-right 5s;
-}
-
-@keyframes slide-right {
-  from {
-    margin-left: -100%;
-    width: 300%;
-  }
-
-  to {
-    margin-right: 100%;
-    width: 100%;
-  }
-}
 
 
 
