@@ -10,6 +10,26 @@
 
 }
 
+#github {
+  max-height: 50px;
+}
+
+.github {
+  align-content: center;
+  color: white;
+  text-align: center;
+}
+
+#lichess {
+  max-height: 50px;
+}
+
+.lichess {
+  align-content: center;
+  color: white;
+  text-align: center;
+}
+
 
 
 .nav-link {
