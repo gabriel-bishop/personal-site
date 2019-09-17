@@ -1,0 +1,22 @@
+<div *ngIf="isLoaded">
+  <h1 style="color: white">Time: {{this.t}}</h1>
+  <h1 style="color: white">Temperature: {{this.f}}°F, {{this.c}}°C</h1>
+  <h1 style="color: white">Humidity: {{this.hum}}%</h1>
+</div>
+
+<div class="container-fluid" style="max-height: 400px" *ngIf="isLoaded">
+  <div style="display: block;">
+    <canvas baseChart width="400" height="400"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+
+</div>
+
+

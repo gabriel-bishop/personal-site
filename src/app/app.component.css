@@ -30,6 +30,26 @@
   text-align: center;
 }
 
+#github {
+  max-height: 50px;
+}
+
+.github {
+  align-content: center;
+  color: white;
+  text-align: center;
+}
+
+#lizard {
+  max-height: 50px;
+}
+
+.lizard {
+  align-content: center;
+  color: white;
+  text-align: center;
+}
+
 
 
 .nav-link {
