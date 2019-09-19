@@ -8,3 +8,11 @@ body {
 
   /*background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");*/
 }
+
+nav {
+	opacity: 50%;
+}
+
+* {
+	color:white;
+}

@@ -1,22 +1,85 @@
-<div *ngIf="isLoaded">
-  <h1 style="color: white">Time: {{this.t}}</h1>
-  <h1 style="color: white">Temperature: {{this.f}}°F, {{this.c}}°C</h1>
-  <h1 style="color: white">Humidity: {{this.hum}}%</h1>
+
+
+<div *ngIf="isLoaded" style="margin-top: 15px;">
+	<h1>Tank Conditions:</h1>
+	<div class='row' id="gradient-box">
+			<div class="col-sm-6">
+				<h2>Cool Area</h2>
+				<h1>{{coldF}}°F</h1>
+				<h5 style="color: white">Humidity: {{coldHum}}%</h5>
+			</div>
+			<div class="col-sm-6">
+				<h2>Basking Area</h2>
+				<h1>{{hotF}}°F</h1>
+				<h5 style="color: white">Humidity: {{hotHum}}%</h5>
+			</div>
+		</div>
+	<p>{{t}}</p>
+
 </div>
 
-<div class="container-fluid" style="max-height: 400px" *ngIf="isLoaded">
-  <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions"
-            [colors]="lineChartColors"
-            [legend]="lineChartLegend"
-            [chartType]="lineChartType"
-            [plugins]="lineChartPlugins">
-    </canvas>
-  </div>
+<div style="align-content: center; margin-bottom: 15px">
+	<div class="btn-group btn-group-toggle" data-toggle="buttons">
+		<label class="btn btn-secondary ">
+			<input type="radio" name="options" id="option1" autocomplete="off"  (click)="getDataHour()">  Hour
+		</label>
+		<label class="btn btn-secondary">
+			<input type="radio" name="options" id="option2" autocomplete="off" (click)="getDataSixHours()">  6 Hours
+		</label>
+		<label class="btn btn-secondary">
+			<input type="radio" name="options" id="option3" autocomplete="off" (click)="getDataTwelveHours()">  12 Hours
+		</label>
+		<label class="btn btn-secondary">
+			<input type="radio" name="options" id="option4" autocomplete="off" (click)="getData24Hours()">  24 Hours
+		</label>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div style="margin-bottom: 20px">
+			<h2>Temperature</h2>
+			<div class="container-fluid" style="max-height: 400px;" *ngIf="isLoaded">
+				<div style="display: block;">
+					<canvas baseChart width="400" height="400"
+							[datasets]="lineChartData"
+							[labels]="lineChartLabels"
+							[options]="lineChartOptions"
+							[colors]="lineChartColors"
+							[legend]="lineChartLegend"
+							[chartType]="lineChartType"
+							[plugins]="lineChartPlugins">
+					</canvas>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div>
+			<h2>Humidity</h2>
+			<div class="container-fluid" style="max-height: 400px; margin-bottom: 200px;" *ngIf="isLoaded">
+				<div style="display: block;">
+					<canvas baseChart width="400" height="400"
+							[datasets]="humidityLineChartData"
+							[labels]="humidityLineChartLabels"
+							[options]="humidityLineChartOptions"
+							[colors]="humidityLineChartColors"
+							[legend]="humidityLineChartLegend"
+							[chartType]="humidityLineChartType"
+							[plugins]="humidityLineChartPlugins">
+					</canvas>
+				</div>
+			</div>
+		</div>
+
+	</div>
 
 </div>
+
+
+
+
 
 

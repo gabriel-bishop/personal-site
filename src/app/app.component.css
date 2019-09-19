@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #000000 !important;
+  background-color: rgba(0, 0, 0, 1) !important;
   /*overflow: hidden;*/
   /*position: fixed;*/
   /*bottom: 0;*/
@@ -9,6 +9,11 @@
   justify-content: space-around;
 
 }
+
+/*.navbar:hover {*/
+/*	background-color: rgba(0, 0, 0, .7) !important;*/
+
+/*}*/
 
 #github {
   max-height: 50px;
