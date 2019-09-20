@@ -469,6 +469,87 @@ export class DragonComponent implements OnInit {
 		});
 	}
 
+
+	getData3Days() {
+		this.service.getData3Days().subscribe(res => {
+
+
+			this.data = res;
+			console.log(this.data)
+
+
+			let timeList = [];
+			let hotTempList = [];
+			let hotHumList = [];
+			let coldTempList = [];
+			let coldHumList = [];
+
+
+			this.data = this.data.reverse();
+			console.log(this.data.length);
+			let every3 = 3;
+			for (var i = 0; i < this.data.length; i++) {
+				let date = new Date(this.data[i].time);
+				if (date.getMinutes() === 0) {
+					if (every3 === 3) {
+						if (!this.isAnomaly(this.data[i])) {
+							let time = new Date(this.data[i].time);
+
+							timeList.push(time.toLocaleTimeString(navigator.language, {
+								hour: '2-digit',
+								minute: '2-digit'
+							}));
+
+							hotTempList.push((9.0 / 5.0 * this.data[i].hotTemperature + 32).toFixed(2));
+							hotHumList.push((this.data[i].hotHumidity).toFixed(2));
+
+							coldTempList.push((9.0 / 5.0 * this.data[i].coldTemperature + 32).toFixed(2));
+							coldHumList.push((this.data[i].coldHumidity).toFixed(2));
+						} else {
+							try {
+								let time = new Date(this.data[i + 1].time);
+
+								timeList.push(time.toLocaleTimeString(navigator.language, {
+									hour: '2-digit',
+									minute: '2-digit'
+								}));
+
+								hotTempList.push((9.0 / 5.0 * this.data[i + 1].hotTemperature + 32).toFixed(2));
+								hotHumList.push((this.data[i + 1].hotHumidity).toFixed(2));
+
+								coldTempList.push((9.0 / 5.0 * this.data[i + 1].coldTemperature + 32).toFixed(2));
+								coldHumList.push((this.data[i + 1].coldHumidity).toFixed(2));
+							} catch (error) {
+								console.error(error);
+							}
+						}
+						every3 = 1
+					} else {
+						every3 += 1;
+					}
+
+				}
+
+			}
+
+			this.lineChartData = [
+				{data: coldTempList, label: 'Cool Area'},
+				{data: hotTempList, label: 'Basking Area'},
+			];
+
+			this.humidityLineChartData = [
+				{data: hotHumList, label: 'Basking Area'},
+				{data: coldHumList, label: 'Cool Area'},
+			];
+
+
+			this.humidityLineChartLabels = timeList;
+			this.lineChartLabels = timeList;
+			this.isLoaded = true;
+
+		});
+	}
+
 	getCurrentReading() {
 		this.service.getRecentReading().subscribe(res => {
 			console.log(res)

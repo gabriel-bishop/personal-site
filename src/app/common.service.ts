@@ -32,6 +32,10 @@ export class CommonService {
 		return this.httpClient.get('http://localhost:8081/api/getData24Hours');
 	}
 
+	getData3Days() {
+		return this.httpClient.get('http://localhost:8081/api/getData3Days');
+	}
+
 	truncate() {
 		return this.httpClient.delete('http://localhost:8081/api/truncate');
 	}

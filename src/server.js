@@ -84,7 +84,16 @@ app.get("/api/getDataTwelveHours", function (req, res) {
 app.get("/api/getData24Hours", function (req, res) {
 	model.find()
 		.sort({time: -1})
-		.limit(1450)
+		.limit(1500)
+		.then(reviews => {
+			res.send(reviews)
+		});
+});
+
+app.get("/api/getData3Days", function (req, res) {
+	model.find()
+		.sort({time: -1})
+		.limit(4500)
 		.then(reviews => {
 			res.send(reviews)
 		});
