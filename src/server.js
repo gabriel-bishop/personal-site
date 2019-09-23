@@ -11,18 +11,33 @@ var db = mongo.connect("mongodb://heroku_gw4glr93:ml58ck88lvnt0olpj14v9o4f3h@ds0
 	}
 });
 
-var app = express();
-app.use(bodyParser());
-app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('./dist/persona-site'));
+app.disable('etag');
 
 app.use(function (req, res, next) {
-	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-	res.setHeader('Access-Control-Allow-Credentials', true);
+	// res.header("Access-Control-Allow-Origin",
+	//   "http://localhost:4200");
+	// res.header("Access-Control-Allow-Origin",
+	//   "https://soccer-tracker.herokuapp.com","");
+
+	var allowedOrigins = ['https://intense-sea-81561.herokuapp.com', 'http://intense-sea-81561.herokuapp.com', 'intense-sea-81561.herokuapp.com', 'http://localhost:4200'];
+	var origin = req.headers.origin;
+	if(allowedOrigins.indexOf(origin) > -1){
+		res.setHeader('Access-Control-Allow-Origin', origin);
+	}
+
+	res.header("Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept");
+	res.header("Access-Control-Allow-Methods",
+		"GET, POST, PUT, DELETE, OPTIONS");
+	res.header("Access-Control-Allow-Credentials", "true");
+	res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+	res.header("Pragma", "no-cache");
+	res.header("Expires", 0);
 	next();
-})
+});
 
 var Schema = mongo.Schema;
 
@@ -35,6 +50,11 @@ var dataSchema = new Schema({
 }, {versionKey: false});
 
 var model = mongo.model('database-readings', dataSchema, 'readings');
+
+
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname,'./dist/personal-site/index.html'));
+});
 
 app.get("/api/getDataHour", function (req, res) {
 	model.find()
@@ -100,6 +120,5 @@ app.get("/api/getData3Days", function (req, res) {
 });
 
 
-app.listen(8081, function () {
-	console.log('App listening on port 8081')
-});
+app.listen(process.env.PORT || 5000);
+
