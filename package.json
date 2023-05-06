@@ -27,7 +27,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.7.1",
     "n3-charts": "^2.0.28",
     "ng2-charts": "^2.3.0",
